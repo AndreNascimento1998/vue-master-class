@@ -1,10 +1,15 @@
 <template>
-    <page-home />
+    <div>
+        <router-view />
+    </div>
 </template>
 
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import PageHome from '@/components/PageHome.vue';
 
 </script>
+
+<style>
+@import "public/style.css";
+</style>
 
