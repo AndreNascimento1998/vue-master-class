@@ -5,7 +5,7 @@
 
 <script setup>
 import sourceData from '@/data.json'
-import ThreadList from './ThreadList.vue';
+import ThreadList from '@/components/ThreadList.vue';
 import { reactive } from 'vue';
 
 

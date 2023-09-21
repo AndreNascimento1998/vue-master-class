@@ -8,7 +8,10 @@
             <div v-for="thread in threads" :key="threads.id" class="thread">
                 <div>
                     <p>
-                        <a href="#">{{ thread.title }}</a>
+                        <router-link 
+                            :to="{name: 'ThreadShow', params: {id: thread.id}}">
+                                {{ thread.title }}
+                        </router-link>
                     </p>
                     <p class="text-faded text-xsmall">
                         By <a href="#">{{ userById(thread.userId).name }}</a>, {{ thread.publisedhAt }}
@@ -39,6 +42,7 @@
 <script setup>
 import sourceData from '@/data.json'
 import { reactive } from 'vue';
+import { RouterLink } from 'vue-router';
 
 const props = defineProps({
     threads: {
