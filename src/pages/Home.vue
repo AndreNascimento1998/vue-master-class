@@ -1,15 +1,15 @@
 <template>
     <h1>Welcome to the forum</h1>
-    <thread-list :threads="threads" />
+    <forum-list :forums="forums" />
 </template>
 
 <script setup>
 import sourceData from '@/data.json'
-import ThreadList from '@/components/ThreadList.vue';
 import { reactive } from 'vue';
+import ForumList from '../components/ForumList.vue';
 
 
-const { threads } = reactive(sourceData)
+const { forums } = reactive(sourceData)
 
 </script>
 

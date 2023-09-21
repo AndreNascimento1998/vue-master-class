@@ -10,6 +10,12 @@ const router = createRouter({
             component: () => import('@/pages/Home.vue')
         },
         {
+            path: '/forum/:id',
+            name: 'Forum',
+            component: () => import('@/pages/Forum.vue'),
+            props: true
+        },
+        {
             path: '/thread/:id',
             name: 'ThreadShow',
             component: () => import('@/pages/ThreadShow.vue'),
