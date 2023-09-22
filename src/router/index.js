@@ -10,6 +10,12 @@ const router = createRouter({
             component: () => import('@/pages/Home.vue')
         },
         {
+            path: '/category/:id',
+            name: 'Category',
+            component: () => import('@/pages/Category.vue'),
+            props: true
+        },
+        {
             path: '/forum/:id',
             name: 'Forum',
             component: () => import('@/pages/Forum.vue'),
@@ -21,11 +27,11 @@ const router = createRouter({
             component: () => import('@/pages/ThreadShow.vue'),
             props: true,
             beforeEnter(to, from, next) {
-                const threadExists = sourceData.threads.find(thread => thread.id === to.params.id)
-                if(threadExists) {
+                const threadExists = sourceData.threads.find((thread) => thread.id === to.params.id)
+                if (threadExists) {
                     return next()
-                }else {
-                    next({ 
+                } else {
+                    next({
                         name: 'NotFound',
                         params: { pathMatch: to.path.substring(1).split('/') },
                         query: to.query,
@@ -38,7 +44,7 @@ const router = createRouter({
             path: '/:pathMatch(.*)*',
             name: 'NotFound',
             component: () => import('@/pages/NotFound.vue')
-        },
+        }
     ]
 })
 

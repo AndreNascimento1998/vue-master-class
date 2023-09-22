@@ -40,9 +40,11 @@
 </template>
 
 <script setup>
-import sourceData from '@/data.json'
-import { reactive } from 'vue';
+import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
+import { useGlobalStore } from '@/stores/GlobalStore.js'
+
+const globalStore = useGlobalStore()
 
 const props = defineProps({
     threads: {
@@ -50,17 +52,10 @@ const props = defineProps({
     }
 })
 
-const {
-    posts,
-    users
-} = reactive(sourceData)
-
-function postById(postId) {
-    return posts.find(p => p.id === postId)
-}
+const users = computed(() => globalStore.sourceData.users)
 
 function userById(userId) {
-    return users.find(u => u.id === userId)
+    return users.value.find(u => u.id === userId)
 }
 
 </script>

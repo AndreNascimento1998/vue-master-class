@@ -1,15 +1,16 @@
 <template>
     <h1>Welcome to the forum</h1>
-    <forum-list :forums="forums" />
+    <category-list :categories="categories" />
 </template>
 
 <script setup>
-import sourceData from '@/data.json'
-import { reactive } from 'vue';
-import ForumList from '../components/ForumList.vue';
+import { computed } from 'vue';
+import CategoryList from '../components/CategoryList.vue';
+import { useGlobalStore } from '@/stores/GlobalStore.js'
 
+const globalStore = useGlobalStore()
 
-const { forums } = reactive(sourceData)
+const categories = computed(() => globalStore.sourceData.categories)
 
 </script>
 

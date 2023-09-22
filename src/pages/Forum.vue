@@ -15,8 +15,10 @@
 
 <script setup>
 import ThreadList from '@/components/ThreadList.vue';
-import sourceData from '@/data.json'
 import { computed } from 'vue';
+import { useGlobalStore } from '@/stores/GlobalStore.js'
+
+const globalStore = useGlobalStore()
 
 const props = defineProps({
     id: {
@@ -25,7 +27,7 @@ const props = defineProps({
     }
 })
 
-const forum = computed(() => sourceData.forums.find(forum => forum.id === props.id))
+const forum = computed(() => globalStore.sourceData.forums.find(forum => forum.id === props.id))
 
-const threads = computed(() => sourceData.threads.filter(thread => thread.forumId === props.id))
+const threads = computed(() => globalStore.sourceData.threads.filter(thread => thread.forumId === props.id))
 </script>

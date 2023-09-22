@@ -1,5 +1,5 @@
 <template>
-    <div class="col-large push-top " style="color: black;">
+    <div class="col-large push-top" style="color: black">
         <div>
             <h1>{{ thread.title }}</h1>
             <post-list :posts="threadPosts" />
@@ -9,15 +9,12 @@
 </template>
 
 <script setup>
-import sourceData from '@/data.json'
-import { computed, reactive, ref } from 'vue';
-import PostList from '@/components/PostList.vue';
-import PostsEdit from '../components/PostsEdit.vue';
+import { computed } from "vue"
+import PostList from "@/components/PostList.vue"
+import PostsEdit from "../components/PostsEdit.vue"
+import { useGlobalStore } from '@/stores/GlobalStore.js'
 
-const {
-    threads,
-    posts
-} = reactive(sourceData)
+const globalStore = useGlobalStore()
 
 const props = defineProps({
     id: {
@@ -26,15 +23,14 @@ const props = defineProps({
     }
 })
 
-const thread = computed(() => threads.find(thread => thread.id === props.id))
+const thread = computed(() => globalStore.sourceData.threads.find((thread) => thread.id === props.id))
 
-const threadPosts = computed(() => posts.filter(post => post.threadId === props.id))
+const threadPosts = computed(() => globalStore.sourceData.posts.filter((post) => post.threadId === props.id))
 
 function addPost(eventData) {
-    posts.push(eventData)
+    globalStore.sourceData.posts.push(eventData)
     thread.value.posts.push(eventData.id)
 }
-
 </script>
 
 <style scoped></style>

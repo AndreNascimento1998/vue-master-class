@@ -25,12 +25,11 @@
 </template>
 
 <script setup>
-import sourceData from '@/data.json'
-import { reactive } from 'vue';
+import { computed } from 'vue';
+import { useGlobalStore } from '@/stores/GlobalStore.js'
 
-const {
-    users
-} = reactive(sourceData)
+const globalStore = useGlobalStore()
+const users = computed(() => globalStore.sourceData.users)
 
 const props = defineProps({
     posts: {
@@ -40,6 +39,6 @@ const props = defineProps({
 })
 
 function userById(userId) {
-    return users.find(u => u.id === userId)
+    return users.value.find(u => u.id === userId)
 }
 </script>
