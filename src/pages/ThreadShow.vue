@@ -28,8 +28,7 @@ const thread = computed(() => globalStore.sourceData.threads.find((thread) => th
 const threadPosts = computed(() => globalStore.sourceData.posts.filter((post) => post.threadId === props.id))
 
 function addPost(eventData) {
-    globalStore.sourceData.posts.push(eventData)
-    thread.value.posts.push(eventData.id)
+    globalStore.createPost(eventData, thread.value)
 }
 </script>
 
