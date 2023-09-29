@@ -3,7 +3,14 @@ import { ref } from 'vue'
 import data from '@/data.json'
 
 export const useGlobalStore = defineStore('global', () => {
-    const sourceData = ref(data)
+    const sourceData = ref({
+        ...data,
+        authId: 'rpbB8C6ifrYmNDufMERWfQUoa202'
+    })
+
+    function authUser() {
+        return sourceData.value.users.find( user => user.id === sourceData.value.authId)
+    }
 
     function createPost(post,threadId) {
         const postId = '9999' + Math.random()
@@ -15,6 +22,7 @@ export const useGlobalStore = defineStore('global', () => {
 
     return {
         sourceData,
-        createPost
+        createPost,
+        authUser
     }
 })
